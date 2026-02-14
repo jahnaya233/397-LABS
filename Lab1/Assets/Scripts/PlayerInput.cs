@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using KBCore.Refs;
+using UnityEditor.ShaderGraph.Internal;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInput : MonoBehaviour
 {
@@ -50,5 +51,13 @@ public class PlayerInput : MonoBehaviour
         camXRotation += mouseSensY * readLook.y * Time.deltaTime * -1;
         camXRotation = Mathf.Clamp(camXRotation, -90f, 90f);
         cam.gameObject.transform.localRotation = Quaternion.Euler(camXRotation, 0, 0);
+    }
+
+    public void ChangeMouseSensibility(float value)
+    {
+   Debug.Log($"Value changed - {value}");
+        mouseSensY = value;
+        rotationSpeed = value;
+
     }
 }
