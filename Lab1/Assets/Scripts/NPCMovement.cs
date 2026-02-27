@@ -3,6 +3,7 @@ using KBCore.Refs;
 using UnityEngine.AI;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(NavMeshAgent))]
 
@@ -36,5 +37,27 @@ public class NPCMovement : MonoBehaviour
             agent.destination = destination;
         }
 
+    }
+
+
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            destination = other.transform.position;
+            agent.destination = destination;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
+
+        if (other.CompareTag("Player"))
+        {
+            destination = waypoints[index].transform.position;
+            agent.destination = destination;
+        }
     }
 }
