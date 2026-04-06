@@ -390,6 +390,7 @@ MonoBehaviour:
   mouseSensY: 9
   controller: {fileID: 3221232872305909084}
   cam: {fileID: 1026896281767576292}
+  audioController: {fileID: 0}
 --- !u!114 &3120231830636139097
 MonoBehaviour:
   m_ObjectHideFlags: 0
