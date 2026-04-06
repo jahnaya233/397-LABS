@@ -28,8 +28,14 @@ public class RandomMap : MonoBehaviour
         //Build Wave Function Collapse Map();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            RebuildPerlinMap();
+        }
+    }
 
-  
     private void BuildRandomMap()
     {
 
@@ -59,7 +65,10 @@ public class RandomMap : MonoBehaviour
                 Destroy(map[row, col]);
             }
         }
-        xOffset = Random.RandomRange(100, 500);
+        xOffset = Random.RandomRange(1000, 5000);
+        zOffset = Random.RandomRange(-1000, -5000);
+        BuildPerlinNoiseMap();
+
     }
     private void BuildPerlinNoiseMap()
     {
@@ -82,8 +91,8 @@ public class RandomMap : MonoBehaviour
 
     private float GetPerlinNoise(float x, float z)
     {
-        float xCoord = (x + xOffset) * (width / 50);
-        float zCoord = (z + zOffset) * (width / 50);
+        float xCoord = (x + xOffset) / (width * perlinScale);
+        float zCoord = (z + zOffset) / (depth * perlinScale);
         return Mathf.Clamp01(Mathf.PerlinNoise(xCoord, zCoord));
     }
 
